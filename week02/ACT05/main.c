@@ -8,6 +8,8 @@
 #include <getopt.h>
 #include <sys/types.h>
 #include "pokemon.h"
+#include "pokedex.h"
+
 
 int main(int argc, char *argv[]) {
     /*
