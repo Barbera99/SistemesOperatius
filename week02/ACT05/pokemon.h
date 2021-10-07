@@ -1,1 +1,5 @@
+
+
 typedef struct pokemon *Pokemon;
+
+
