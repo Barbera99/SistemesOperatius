@@ -1,8 +1,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <unistd.h>
-#include "pokedex.h"
-#include "pokemon.h"
+#include "pokedex.c"
 
 #define MAX_POKEMON 10
 
