@@ -8,11 +8,12 @@ float y;
 } point ;
 
 typedef struct {
-float x1, y1, x2, y2;
+point inici;
+point fi;
 } line ;
  
 float dist( line linia) {
-return(sqrt((linia.x1 - linia.x2)*(linia.x1 - linia.x2) + (linia.y1 - linia.y2)*(linia.y1 - linia.y2)));
+return(sqrt((linia.inici.x - linia.fi.x)*(linia.inici.x - linia.fi.x) + (linia.inici.y - linia.fi.y)*(linia.inici.y - linia.fi.y)));
 }
  
 int main(){
@@ -22,11 +23,11 @@ line linia;
  
 
 printf("The coordinates of the first point is: ");
-scanf("%f %f",&linia.x1,&linia.y1);
+scanf("%f %f",&linia.inici.x,&linia.inici.y);
  
 
 printf("\nThe coordinates of the second point is: ");
-scanf("%f %f",&linia.x2,&linia.y2);
+scanf("%f %f",&linia.fi.x,&linia.fi.y);
  
 
 printf("\nThe length of the line is %f\n", dist(linia));
