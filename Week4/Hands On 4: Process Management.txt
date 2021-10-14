@@ -8,17 +8,29 @@
 
 2 Modificar aquest procés per obtenir una sortida indicant 
     2.1 Hola sóc el procés pare i Hola sóc el procés fill. (0,5 punts)
-        -
+        pid_t p1 = fork();
+        if (p1 == 0) {
+                printf("Hola sóc el procés fill \n");
+        } else if(p1 > 0) {
+                printf("Hola sóc el procés pare \n");
+        }
 
 3 Modificar aquest exemple fent anar la funció execv(). (0,5 punts)
-        -
+        - 
 
 4 Explica el funcionament del programa. 
 Indicant quants senyals s'envien, quin procés envia el senyal, i on l'envia. (2,5 punts)
-        -
+        - Primer es crea un procés pare i imprimeix el seu pid. Tot seguit crida a un waitpid(),
+        que esperarà a que el seu fill acabi, canvie o retorni una senyal.
+        - El fill imprimeix el seu pid i envia un senyal a ell mateix per a parar(SIGSTOP),
+        al canviar l'estat tornem al procés pare.
+        -Tornem al procés pare, que imprimeix una frase i envia al seu fill una senyal de continuar(SIGCONT)
+        i fa un altre waitpid() per a processar aquest canvi d'estat.
+        - El pare fa un altre waitpid() que durarà mentre el fill imprimeix algo i acaba.
+        - Per últim el pare imprimeix una frase i acaba.
 
-5 Programeu un programa pare, fill net que tingui la següent sortida (mantenint l’ordre). 
-A més a més els fills, hauran de generar un enter aleatori entre els valors 0,1 i 2. 
+5 Programeu un programa pare, fill i net que tingui la següent sortida (mantenint l’ordre). 
+A més a més els fills, hauran de generar un enter aleatori entre els valors 0, 1 i 2. 
 El 0=apunyalat, 1=decapitat.  (4 punts)
         -
 

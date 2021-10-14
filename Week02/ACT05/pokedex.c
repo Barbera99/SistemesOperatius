@@ -41,26 +41,20 @@ return EXIT_SUCCESS;
 
 int add_pokemon(int id, char *name, double weight, double height){
     new_pokemon(id, name, weight, height);
-
-
-
 return EXIT_SUCCESS;
 }
  
 int show_pokemon(int pos){
     Pokemon p = pokemons[pos];
-
     printf("id: %d \n", pokemon_id(p));
     printf("name: %s \n", pokemon_name(p));
     printf("weight: %lf \n", pokemon_weight(p));
     printf("height: %lf \n", pokemon_height(p));
-
-
 return EXIT_SUCCESS;
 }
  
-int remove_pokemon(){
-printf("[remove_pokemon]: @NOT IMPLEMENTED \n");
+int remove_pokemon(int id_pokemon){
+
 return EXIT_SUCCESS;
 }
  
