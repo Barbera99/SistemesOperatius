@@ -27,6 +27,8 @@ Delete the Pokemon with position in the pokedex = posiiton\n\
 #define ERR_SHOW_POKEMON "show pokemon blew up"
 #define DEFAULT_PROGNAME "pokemon_management_service"
 
+init_pokedex();
+
 extern int errno;
 
 void usage(char *progname, int opt);
@@ -44,31 +46,32 @@ int main(int argc, char *argv[])
         switch (opt)
         {
         case 'a':
-        printf("AHAUEET");
-        for (int i = 0; i < argc; i++){
-            printf("\nargv[%d]: %s",i , argv[i]);
-        }
-            
-            if (add_pokemon((int)argv[2], argv[3], (double)argv[4], (double) argv[5]) != EXIT_SUCCESS)
+            printf("Llargaria de argv: %d", sizeof(argv));
+
+            for (int i = 0; i < argc; i++)
+            {
+                printf("\nargv[%d]: %s", i, argv[i]);
+            }
+            if (add_pokemon(atoi(argv[2]), argv[3], atof(argv[4]), atof(argv[5])) != EXIT_SUCCESS)
             {
                 perror(ERR_ADD_POKEMON);
                 exit(EXIT_FAILURE);
             }
             break;
         case 's':
-            if (show_pokemon((int)argv[2]) != EXIT_SUCCESS)
+            if (show_pokemon(atoi(argv[2])) != EXIT_SUCCESS)
             {
                 perror(ERR_SHOW_POKEMON);
                 exit(EXIT_FAILURE);
             }
             break;
         case 'r':
-            if (remove_pokemon() != EXIT_SUCCESS)
+            if (remove_pokemon(argv[2]) != EXIT_SUCCESS)
             {
                 perror(ERR_REMOVE_POKEMON);
                 exit(EXIT_FAILURE);
             }
-            
+
             break;
         case 'h':
         default:
