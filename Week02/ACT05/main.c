@@ -27,7 +27,7 @@ Delete the Pokemon with position in the pokedex = posiiton\n\
 #define ERR_SHOW_POKEMON "show pokemon blew up"
 #define DEFAULT_PROGNAME "pokemon_management_service"
 
-init_pokedex();
+int res;
 
 extern int errno;
 
@@ -38,6 +38,7 @@ int remove_pokemon();
 
 int main(int argc, char *argv[])
 {
+    res = init_pokedex();
     int opt;
     opterr = 0;
     WELCOME_MSG;
@@ -46,7 +47,7 @@ int main(int argc, char *argv[])
         switch (opt)
         {
         case 'a':
-            printf("Llargaria de argv: %d", sizeof(argv));
+            printf("Llargaria de argv: %d", argc);
 
             for (int i = 0; i < argc; i++)
             {
