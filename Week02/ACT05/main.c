@@ -32,9 +32,6 @@ int res;
 extern int errno;
 
 void usage(char *progname, int opt);
-int add_pokemon();
-int show_pokemon();
-int remove_pokemon();
 
 int main(int argc, char *argv[])
 {
@@ -47,12 +44,6 @@ int main(int argc, char *argv[])
         switch (opt)
         {
         case 'a':
-            printf("Llargaria de argv: %d", argc);
-
-            for (int i = 0; i < argc; i++)
-            {
-                printf("\nargv[%d]: %s", i, argv[i]);
-            }
             if (add_pokemon(atoi(argv[2]), argv[3], atof(argv[4]), atof(argv[5])) != EXIT_SUCCESS)
             {
                 perror(ERR_ADD_POKEMON);

@@ -1,8 +1,3 @@
-
-
-
-//Pokemon *p;
-
 typedef struct pokemon *Pokemon;
 
 Pokemon create_pokemon();

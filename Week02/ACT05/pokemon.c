@@ -43,12 +43,10 @@ Pokemon new_pokemon(int pokemon_id, char *name, double height,double weight)
 {  
     Pokemon pokemon = malloc(sizeof(struct pokemon));
     pokemon->pokemon_id = pokemon_id;
-    pokemon->name = name;
+    pokemon->name = strdup(name); //Serveix per guardar el valor en una altra adreça de memòria i d'aquesta manera no anar sobreescrivint el nom tot el rato.
     pokemon->height = height;
     pokemon->weight = weight;
-
     return pokemon;
-    
 }
 
 int pokemon_id(Pokemon pokemon)
