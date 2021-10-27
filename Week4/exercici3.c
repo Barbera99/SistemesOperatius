@@ -14,7 +14,7 @@ int main(void)
                 Per a poder utilitzar el programa amb execv(), hem hagut d'indicar
                 la ruta completa de la comanda find.
                 */
-                execv("/usr     /bin/find", argv);
+                execv("/usr/bin/find", argv);
         }
 
         /* El pare dorm 2 segons (més endavant veure com amb wait podem sincronitzar millor pare i fill*/
