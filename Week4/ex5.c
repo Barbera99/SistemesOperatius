@@ -10,6 +10,7 @@ int generar_random()
     return rand() % 2;
 }
 
+
 int main()
 {
     int status = 0;
@@ -25,9 +26,11 @@ int main()
         printf("\nHola sóc Rickard Stark casat amb Lyarra Stark amb pid = %d", pid);
         fflush(stdout);
         wait(&status);
-        char *msgN, *msgR;
+        // char *msgN, *msgR;
         int estat = WEXITSTATUS(status);
 
+        
+/*
         if (estat == 0)
         {
             msgN = "decapitat";
@@ -47,8 +50,13 @@ int main()
         {
             msgN = "apunyalat";
             msgR = "apunyalat";
-        }
-        printf("\nEn resum el meu fill Robb ha estat %s, en Ned %s i jo en Rickard amb pid = %d i m’han executat.\nThe winter is coming!!!!!", msgR, msgN, pid);
+        }*/
+
+
+        //printf("\nEn resum el meu fill Robb ha estat %s, en Ned %s i jo en Rickard amb pid = %d i m’han executat.\nThe winter is coming!!!!!", msgR, msgN, pid);
+
+        // Una simplificació xD
+        printf("\nEn resum el meu fill Robb ha estat %s, en Ned %s i jo en Rickard amb pid = %d i m’han executat.\nThe winter is coming!!!!!",  (estat == 3 || estat == 1)? "apunyalat": "decapitat", (estat == 3 || estat == 2)? "apunyalat": "decapitat", pid);
     }
     else
     {
