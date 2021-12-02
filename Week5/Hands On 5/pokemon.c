@@ -5,15 +5,16 @@
 #include <stdio.h>
 #include <time.h>
 #include <string.h>
-#include "pokedex.c"
 
 #define RUNNINGDIR "./"
 #define LOGFILE RUNNINGDIR "log.txt"
 
+#define MAX_BERRIES 3
+int berries = 0;
+
 enum accions
 {
-    pokemonEscaped = 7,
-    pokemonCaptured = 2
+    pokemonEscaped = 7
 };
 
 void logger(char *missatge)
@@ -28,11 +29,6 @@ void logger(char *missatge)
     fclose(f);
 }
 
-void tractament_2()
-{
-
-    exit(0);
-}
 int getRandom()
 {
     return rand() % 10;
@@ -44,24 +40,44 @@ void tractament()
     char log[100];
     sprintf(log, "El valor del num:%d\n", num);
     logger(log);
+
+    for (int i = 0; i <= berries; i++)
+    {
+        if (num == 2 + (i * 2))
+        {
+            exit(2);
+        }
+    }
     if (num == pokemonEscaped)
     {
-        exit(pokemonEscaped);
+        exit(7);
     }
-    else if (num == pokemonCaptured)
+    else
     {
-        exit(pokemonCaptured);
+        kill(getpid(), SIGSTOP);
     }
-    else{
-        kill(getpid(),SIGSTOP);
+}
+
+void berry()
+{
+    if (berries != MAX_BERRIES)
+    {
+        berries++;
+        //exit(berries);
     }
+    /*
+    else if (berries == MAX_BERRIES)
+    {
+        exit(berries);
+    }
+    */
 }
 
 int main()
 {
     srand(getpid());
     signal(SIGUSR1, tractament);
-    signal(SIGINT, SIG_IGN);
+    signal(SIGUSR2, berry);
     while (true)
     {
     }

@@ -5,10 +5,10 @@
 #include <sys/wait.h>
 #include <signal.h>
 #include <errno.h>
-#include "pokemon.c"
 #include <unistd.h>
 #include <stdarg.h>
 #include <sys/wait.h>
+#include "pokedex/pokedex.h"
 
 #define KNRM "\x1B[0m"
 #define KRED "\x1B[31m"
@@ -19,6 +19,7 @@
 #define KCYN "\x1B[36m"
 #define KWHT "\x1B[37m"
 
+int berryCount = 0;
 char *args[] = {"pokemon", "pokemon", NULL};
 
 int getRandomPokemon()
@@ -28,14 +29,16 @@ int getRandomPokemon()
 
 int main(int arc, char *arv[])
 {
+    signal(SIGINT, SIG_IGN); //Ignorem el ctrl + c
+    init_pokedex();          // Carregar fitxer CSV amb els 151 pokemons
     int endFlag = 1;
     while (endFlag == 1)
     {
         int endFlag1 = 1;
         int status = 0;
+        int status2 = 0;
         char s[100];
         char choice;
-        //init_pokedex(); // Carregar fitxer CSV amb els 151 pokemons
         sprintf(s, "################\n# E. Explore \n# Q. Quit\n################\n");
         if (write(1, s, strlen(s)) < 0)
             perror("Error writting the menu");
@@ -47,20 +50,19 @@ int main(int arc, char *arv[])
             break;
         case 'E':;
             int num = getRandomPokemon();
+            printf("%s", KCYN);
+            show_pokemon(num); // Mostrem l'informació del pokemon.
+            printf("%s", KNRM);
+            pid_t pid = fork();
             while (endFlag1 == 1)
             {
-                pid_t pid = fork();
                 if (pid > 0)
                 {
-
                     char choice1;
-                    //printf("%s", KCYN);
-                    // show_pokemon(num);
-                    // printf("%s", KNRM);
                     sprintf(s, "################\n# P. Throw Pokeball \n# B. Throw Berry \n# R. Run\n################\n");
                     if (write(1, s, strlen(s)) < 0)
                         perror("Error writting the menu");
-                    scanf(" %c", &choice1);
+                    scanf(" \n %c", &choice1);
 
                     switch (choice1)
                     {
@@ -68,8 +70,11 @@ int main(int arc, char *arv[])
                         kill(pid, SIGUSR1);
                         waitpid(-1, &status, WUNTRACED);
                         int estat = WEXITSTATUS(status);
+                        // 0 - Capturat
+                        // 1 - EscapaT
                         if (estat == 2)
                         {
+                            fflush(stdout);
                             printf("Captured\n");
                             endFlag1 = 0;
                             break;
@@ -83,10 +88,21 @@ int main(int arc, char *arv[])
                         else
                         {
                             printf("No capturat\n");
+                            kill(pid, SIGCONT);
                         }
                         break;
                     case 'B': //THROW BERRY
-                        
+                        kill(pid, SIGUSR2);
+                        /*
+                        waitpid(-1, &status2, WUNTRACED);
+                        int estat_2 = WEXITSTATUS(status2);
+                        if (estat_2 == 3)
+                        {
+                            printf("Has assolit el nombre màxim de berries.");
+                        }
+                        else{
+                            printf("Has utilitzat %d berries", estat_2);
+                        }*/
                         break;
                     case 'R': //RUN
                         kill(pid, SIGSTOP);
