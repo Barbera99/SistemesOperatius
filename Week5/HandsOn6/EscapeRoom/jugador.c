@@ -1,19 +1,11 @@
 #include <time.h>
-
 #include <stdlib.h>
-
 #include <stdio.h>
-
 #include <signal.h>
-
 #include <string.h>
-
 #include <unistd.h>
-
 #include <sys/types.h>
-
 #include <sys/wait.h>
-
 #include <errno.h>
 
 // El jugador acabarà únicament per una notificació del pare. El temps s'ha exhaurit i cap jugador ha encertat la combinació del candau, o bé un dels jugadors han encertat la combinació i guanyen la partida.
@@ -52,7 +44,6 @@ int main()
 
       for (i = 0; i < n; i++)
       {
-
          pass[i] = 65 + rand() % 62;
       }
 

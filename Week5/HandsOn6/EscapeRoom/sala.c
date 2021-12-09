@@ -1,17 +1,10 @@
 #include <stdlib.h>
-
 #include <stdio.h>
-
 #include <signal.h>
-
 #include <string.h>
-
 #include <unistd.h>
-
 #include <sys/types.h>
-
 #include <sys/wait.h>
-
 #include <errno.h>
 
 // Definim dues variables per controlar la situació de la partida.
@@ -167,10 +160,12 @@ int main(int argc, char *argv[])
     int leidos;
 
     while ((jugant == 1) && (read(fd[0], &car, sizeof(car)) > 0))
-
     {
 
-        if (car[0] == clau[0] && car[1] == clau[1] && car[2] == clau[2] && car[3] == clau[3])
+        //HEM ARREGLAT AQUESTA LÍNIA
+        //if (car[0] == clau[0] && car[1] == clau[1] && car[2] == clau[2] && car[3] == clau[3])
+        //printf("\n%s = %s", car, clau); //Per veure les comparacions
+        if (strncmp(car, clau, 4) == 0)
         {
 
             sprintf(s, "--- Els jugadors obren el candau amb la clau %s \n", clau);

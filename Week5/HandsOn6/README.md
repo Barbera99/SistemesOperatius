@@ -19,3 +19,11 @@
 
 ## Modifiqueu el codi anterior per tenir dos processos fills, un farà el ls i l'altre el wc -l. El pare esperarà que els dos fills acabin per acabar.
 - activitatsPipes3.c
+
+## Milloreu el codi presentat, eliminar repeticions, simplificant la lògica, millorant el Makefile... Com a mínim heu de fer una aportació.
+- EscapeRoom/sala.c
+- Línia 168, hem canviat la condició del if per a fer-ho de manera mes curta.
+
+## Activtat final: Pokémon
+## Millorant la pokédex a partir de l'aventura (1 punts)
+## Simulant combats Pokémon (3 punts)

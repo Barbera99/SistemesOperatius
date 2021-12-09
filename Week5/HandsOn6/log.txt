@@ -1,0 +1,24 @@
+Thu Dec  2 16:31:53 2021
+: El valor del num:5
+ 
+Thu Dec  9 10:42:51 2021
+: El valor del num:7
+ 
+Thu Dec  9 10:42:57 2021
+: El valor del num:1
+ 
+Thu Dec  9 10:42:59 2021
+: El valor del num:5
+ 
+Thu Dec  9 10:43:01 2021
+: El valor del num:5
+ 
+Thu Dec  9 10:43:02 2021
+: El valor del num:3
+ 
+Thu Dec  9 10:43:03 2021
+: El valor del num:1
+ 
+Thu Dec  9 10:43:04 2021
+: El valor del num:4
+ 
