@@ -55,4 +55,4 @@
 
 ## Activitat 10: Si executeu aquest script, observareu que el script no realitza la suma de forma correcta. Expliqueu quin és el problema i proposeu una solució.
 - activitat_10.sh
-- El problema esta en que al sumar el 072, aquest 0 no deixa que la suma és realitzi correctament.
+- El problema esta en que al sumar el 072, aquest 0 no deixa que la suma és realitzi correctament ja que ho detecta com a octal.
