@@ -104,11 +104,18 @@ void incrementCaptured(int pos){
 }
 // Escriure 
 void save(){
-    FILE *f = fopen("pokedex/pokemon_timestamp.csv", "w");
+
+    //@Jordi: Un timestamp és una marca de temps
+    time_t now;
+    time(&now);
+    char filename[100];
+    sprintf(filename, "./pokedex/pokedex_%d.csv", ctime(&now));
+    FILE *f = fopen(filename, "w");
     for (int i = 0; i < N_POKEMONS; i++) {
         Pokemon p = pokemons[i];
         char **type = pokemon_type(p);
-        fprintf(f,"%d,%s,%s,%s,%d,%d,%d,%d,%d,%d,%d,%d,%d,%d,%d,%d\n", pokemon_id(p), pokemon_name(p), type[0], type[1], pokemon_total(p), pokemon_hp(p), pokemon_attack(p), pokemon_defense(p), pokemon_spAttack(p), pokemon_spDefense(p), pokemon_speed(p), pokemon_gen(p), pokemon_legendary(p), pokemon_seen(p), pokemon_captured(p));
+        //@Jordi: Aqui teniau un %d extra
+        fprintf(f,"%d,%s,%s,%s,%d,%d,%d,%d,%d,%d,%d,%d,%d,%d,%d\n", pokemon_id(p), pokemon_name(p), type[0], type[1], pokemon_total(p), pokemon_hp(p), pokemon_attack(p), pokemon_defense(p), pokemon_spAttack(p), pokemon_spDefense(p), pokemon_speed(p), pokemon_gen(p), pokemon_legendary(p), pokemon_seen(p), pokemon_captured(p));
     }
     fclose(f);
 }
