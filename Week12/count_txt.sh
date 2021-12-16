@@ -1,7 +1,6 @@
-!#/bin/bash
+#!/bin/bash
 
-txt_dir=`ls ./*.txt`
-
-num_dir=`$txt_dir | wc` 
+#num_dir=`ls ./*.txt | wc -l` 
+num_dir=$(ls ./*.txt | wc -l) 
 
 echo $num_dir
